@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h3>Admin Dashboard</h3>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h3>All Orders</h3>
+    <div id="orders"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+const orders = getOrders();
+ordersDiv.innerHTML = JSON.stringify(orders);
+</script>
+
+</body>
+</html>

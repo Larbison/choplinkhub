@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vendor Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h2>👨🏾‍🍳 Vendor Dashboard</h2>
+  <button class="primary" onclick="goCustomer()">View Customer Page</button>
+</div>
+
+<div class="container">
+
+<h2 class="dashboard-title">Add Available Food</h2>
+
+<div class="card">
+  <input id="foodName" placeholder="Enter Food Name">
+  <input id="foodPrice" type="number" placeholder="Enter Price (GHS)">
+  <input id="foodImage" type="file">
+  <button class="primary" onclick="addFood()">Add Food</button>
+</div>
+
+<h2 class="dashboard-title">Your Food Listings</h2>
+
+<div id="foodList" class="food-grid"></div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+
+const currentUser = localStorage.getItem("currentUser");
+if (!currentUser) window.location.href = "login.html";
+
+function addFood() {
+  const name = document.getElementById("foodName").value;
+  const price = document.getElementById("foodPrice").value;
+  const imageFile = document.getElementById("foodImage").files[0];
+
+  if (!name || !price || !imageFile) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function () {
+    let foods = getFoods();
+
+    const newFood = {
+      id: Date.now(),
+      name,
+      price,
+      image: reader.result,
+      vendor: currentUser
+    };
+
+    foods.push(newFood);
+    saveFoods(foods);
+
+    document.getElementById("foodName").value = "";
+    document.getElementById("foodPrice").value = "";
+    document.getElementById("foodImage").value = "";
+
+    loadVendorFoods();
+  };
+
+  reader.readAsDataURL(imageFile);
+}
+
+function loadVendorFoods() {
+  const foods = getFoods().filter(f => f.vendor === currentUser);
+  const foodList = document.getElementById("foodList");
+  foodList.innerHTML = "";
+
+  foods.forEach(food => {
+    foodList.innerHTML += `
+      <div class="card">
+        <img src="${food.image}" class="food-img">
+        <h4>${food.name}</h4>
+        <p>GHS ${food.price}</p>
+        <button class="danger" onclick="deleteFood(${food.id})">Delete</button>
+      </div>
+    `;
+  });
+}
+
+function deleteFood(id) {
+  let foods = getFoods().filter(f => f.id !== id);
+  saveFoods(foods);
+  loadVendorFoods();
+}
+
+function goCustomer() {
+  window.location.href = "dashboard.html";
+}
+
+loadVendorFoods();
+
+</script>
+
+</body>
+</html>

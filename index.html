@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chop Link Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+ <header class="navbar">
+  <div class="logo">🍲 Chop Link Hub</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Log In</a>
+    <a href="signup.html" class="btn-outline">Sign Up</a>
+  </nav>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Your Campus Food Connection</h1>
+      <p>Find nearby food vendors, browse menus, and order instantly.</p>
+      <button class="btn-primary">Sign up to Explore Food Now</button>
+    </div>
+
+    <div class="hero-images">
+      <img src="https://media.istockphoto.com/id/944478708/photo/couple-eating-lunch-with-fresh-salad-and-appetizers.jpg?s=612x612&w=0&k=20&c=xZdIIHvakQrYCbR59RM8nrhEnw-xu4nE-BOeOhQPnck=" alt="">
+      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1" alt="">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="">
+    </div>
+  </section>
+
+  <!-- Cards Section -->
+  <section class="cards">
+    <div class="card">
+      <img src="https://cdn.classfmonline.com/imagelib/thumbs/89110658.jpg" alt="">
+      <h3>For Customers</h3>
+      <p>Browse real-time menus, place orders, and chat with vendors.</p>
+      <button class="btn-secondary" onclick="customerFlow()">Get Started</button>
+    </div>
+
+    <div class="card">
+      <img src="https://images.squarespace-cdn.com/content/v1/5e5bdb1c805a63534f1305cc/1583252702978-9V07TNI919RPS9Z4351J/Ghfood5.jpg" alt="">
+      <h3>For Vendors</h3>
+      <p>Update availability, receive messages, and grow your reach.</p>
+      <button class="btn-secondary" onclick="vendorFlow()">Join Now</button>
+    </div>
+  </section>
+
+  <!-- Chat Bubble -->
+  <div class="chat-widget">
+    💬 Chat with us!
+  </div>
+
+<script>
+  // Customer button flow: confirm sign up or login
+  function customerFlow() {
+    const choice = confirm("Press OK to Sign Up, Cancel to Log In");
+    if (choice) {
+      window.location.href = "signup.html";
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+
+  // Vendor button flow: confirm sign up or login
+  function vendorFlow() {
+    const choice = confirm("Press OK to Sign Up, Cancel to Log In");
+    if (choice) {
+      window.location.href = "signup.html";
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+</script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDZ8dL0E4Mn-BvychqiHDSUm46f2wr0sF4",
+    authDomain: "chop-link-hub-c5595.firebaseapp.com",
+    projectId: "chop-link-hub-c5595",
+    storageBucket: "chop-link-hub-c5595.firebasestorage.app",
+    messagingSenderId: "769841226189",
+    appId: "1:769841226189:web:4866b96259052cb3a7e484"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+
+</body>
+</html>
